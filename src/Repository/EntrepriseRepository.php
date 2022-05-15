@@ -4,8 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Entreprise;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -27,7 +27,7 @@ class EntrepriseRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Entreprise $entity, bool $flush = false): void
+    public function add(Entreprise $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -39,7 +39,7 @@ class EntrepriseRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Entreprise $entity, bool $flush = false): void
+    public function remove(Entreprise $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -47,28 +47,32 @@ class EntrepriseRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Entreprise[] Returns an array of Entreprise objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    // /**
+    //  * @return Entreprise[] Returns an array of Entreprise objects
+    //  */
+    /*
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    */
 
-//    public function findOneBySomeField($value): ?Entreprise
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /*
+    public function findOneBySomeField($value): ?Entreprise
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
 }
